@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
 import 'express-async-errors';
+import cors from 'cors'
 
 import apiRouter from './routes/api';
 import logger from 'jet-logger';
@@ -24,6 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(cors());
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
@@ -57,17 +59,14 @@ app.use((err: Error | CustomError, _: Request, res: Response, __: NextFunction) 
  *                                  Front-end content
  **********************************************************************************/
 
-// Set views dir
-const viewsDir = path.join(__dirname, 'views');
-app.set('views', viewsDir);
-
 // Set static dir
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
 // Serve index.html file
 app.get('*', (_: Request, res: Response) => {
-    res.sendFile('index.html', {root: viewsDir});
+    console.warn(staticDir)
+    res.sendFile('index.html', {root: staticDir});
 });
 
 
