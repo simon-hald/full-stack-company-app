@@ -1,8 +1,8 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response, Router } from 'express';
 
-import userService from '@services/user-service';
-import { ParamMissingError } from '@shared/errors';
+import userService from '../services/user-service';
+import { ParamMissingError } from '../shared/errors';
 
 
 
@@ -25,7 +25,7 @@ export const p = {
  */
 router.get(p.get, async (_: Request, res: Response) => {
     const users = await userService.getAll();
-    return res.status(OK).json({users});
+    return res.status(OK).json(users);
 });
 
 

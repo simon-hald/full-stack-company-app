@@ -1,0 +1,80 @@
+<h1>Existing companies</h1>
+<button
+    nz-button
+    nzType="primary"
+    (click)="this.createAddOneModal(dialogContent)">
+  Create company
+</button>
+<button
+    nz-button
+    nzType="primary"
+    (click)="this.getAllCompanies()">
+  Refresh
+</button>
+
+<nz-table
+    #basicTable
+    [nzData]="this.companies"
+    [nzLoading]="this.isUpdatingTable">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Mail</th>
+    <th>Country</th>
+    <th>Owner</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let company of basicTable.data">
+    <td>{{company.name}}</td>
+    <td>{{company.email}}</td>
+    <td>{{company.country}}</td>
+    <td>
+      <span *ngFor="let owner of company.owners">
+        {{prettyOwnerName(owner)}}
+      </span>
+    </td>
+    <td>
+      <a (click)="this.updateCompanyDialog(dialogContent, company)">Edit 一 {{company.name}}</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a (click)="this.deleteOneCompany(company.id)">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+<ng-template #dialogContent>
+  <nz-input-group nzAddOnBefore="Name">
+    <input type="text" nz-input [(ngModel)]="this.tmpCompany.name" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Mail">
+    <input type="text" nz-input [(ngModel)]="this.tmpCompany.email" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Country">
+    <input type="text" nz-input [(ngModel)]="this.tmpCompany.country" />
+  </nz-input-group>
+
+  <nz-divider></nz-divider>
+
+  <nz-card nzTitle="Owners" [nzExtra]="extraTemplate">
+    <span *ngFor="let owner of this.tmpCompany.owners">
+      <nz-tag (nzOnClose)="this.removeOwnerFromCompany(owner)" nzMode="closeable">{{prettyOwnerName(owner)}}</nz-tag>
+    </span>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+      Add owner
+      <i nz-icon nzType="down"></i>
+    </a>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu *ngFor="let owner of this.users">
+        <li (click)="addOwnerToCompany(owner)" nz-menu-item>{{owner.name}}</li>
+      </ul>
+    </nz-dropdown-menu>
+  </ng-template>
+</ng-template>

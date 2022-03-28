@@ -1,7 +1,7 @@
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import path from 'path';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 
 import express, { NextFunction, Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
@@ -10,7 +10,7 @@ import cors from 'cors'
 
 import apiRouter from './routes/api';
 import logger from 'jet-logger';
-import { CustomError } from '@shared/errors';
+import { CustomError } from './shared/errors';
 
 
 // Constants
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Security (helmet recommended in express docs)
 if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
+    // app.use(helmet());
 }
 
 
@@ -65,7 +65,6 @@ app.use(express.static(staticDir));
 
 // Serve index.html file
 app.get('*', (_: Request, res: Response) => {
-    console.warn(staticDir)
     res.sendFile('index.html', {root: staticDir});
 });
 

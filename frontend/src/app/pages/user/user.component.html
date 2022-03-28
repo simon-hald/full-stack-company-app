@@ -1,0 +1,69 @@
+<h1>Existing users</h1>
+<button
+  nz-button
+  nzType="primary"
+  (click)="this.createAddOneModal(dialogContent)">
+  Create user
+</button>
+<button
+  nz-button
+  nzType="primary"
+  (click)="this.getAllUsers()">
+  Refresh
+</button>
+
+<nz-table
+  #basicTable
+  [nzData]="this.users"
+  [nzLoading]="this.isUpdatingTable">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Mail</th>
+    <th>Social security number</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{data.name}}</td>
+    <td>{{data.email}}</td>
+    <td>{{data.socialSecurityNumber}}</td>
+    <td>
+      <a (click)="this.updateUserDialog(updateDialogContent, data)">Edit 一 {{data.name}}</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a (click)="this.deleteOneUser(data.id)">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+<ng-template #dialogContent>
+  <nz-input-group nzAddOnBefore="Name">
+    <input type="text" nz-input [(ngModel)]="this.newUser.name" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Mail">
+    <input type="text" nz-input [(ngModel)]="this.newUser.email" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Social security number">
+    <input type="text" nz-input [(ngModel)]="this.newUser.socialSecurityNumber" />
+  </nz-input-group>
+</ng-template>
+
+<ng-template #updateDialogContent>
+  <nz-input-group nzAddOnBefore="Name">
+    <input type="text" nz-input [(ngModel)]="this.updatingUser.name" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Mail">
+    <input type="text" nz-input [(ngModel)]="this.updatingUser.email" />
+  </nz-input-group>
+
+  <nz-input-group nzAddOnBefore="Social security number">
+    <input type="text" nz-input [(ngModel)]="this.updatingUser.socialSecurityNumber" />
+  </nz-input-group>
+
+</ng-template>

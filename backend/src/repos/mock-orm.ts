@@ -1,8 +1,12 @@
 import jsonfile from 'jsonfile';
+import helmet from "helmet";
+import app from "@server";
 
 
-const dbFilePath = 'src/repos/database.json';
-
+let dbFilePath = 'src/repos/database.json';
+if (process.env.NODE_ENV === 'production') {
+    dbFilePath = 'repos/database.json';
+}
 
 /**
  * Fetch the json from the file.

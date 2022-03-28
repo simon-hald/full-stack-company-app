@@ -5,6 +5,7 @@
     "build": "./node_modules/.bin/ts-node build.ts",
     "lint": "eslint . --ext .ts",
     "start": "node -r module-alias/register ./dist --env=production",
+    "start:docker": "node -r module-alias/register ./ --env=production",
     "start:dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json",
     "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec"
@@ -64,6 +65,7 @@
   "dependencies": {
     "command-line-args": "^5.2.1",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
@@ -75,6 +77,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/command-line-args": "^5.2.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.13",

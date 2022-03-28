@@ -32,3 +32,13 @@ export class UserNotFoundError extends CustomError {
         super(UserNotFoundError.Msg, UserNotFoundError.HttpStatus);
     }
 }
+
+export class CompanyNotFoundError extends CustomError {
+
+    public static readonly Msg = 'A company with the given id does not exists in the database.';
+    public static readonly HttpStatus = HttpStatusCodes.NOT_FOUND;
+
+    constructor() {
+        super(CompanyNotFoundError.Msg, CompanyNotFoundError.HttpStatus);
+    }
+}
