@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "b83b280a-2836-4547-aa9a-024082371a41",
+		"name": "Owners",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"name\": \"testUser\",\n        \"email\": \"testUser@testUser.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/users/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"id\": 184692848923,\n        \"name\": \"Simon\",\n        \"email\": \"Simon@Simon.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/users/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"company\": {\n        \"name\": \"test\",\n        \"email\": \"mail@mail.com\",\n        \"country\": \"denmark\",\n        \"owner\": \"tester\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/users/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"users",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "396814177519"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
